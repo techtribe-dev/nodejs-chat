@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-chat",
+  "version": "1.0.0",
+  "description": "node chat server",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/techtribe-dev/nodejs-chat.git"
+  },
+  "keywords": [
+    "chat",
+    "server",
+    "nodejs"
+  ],
+  "author": "techtribe.dev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/techtribe-dev/nodejs-chat/issues"
+  },
+  "homepage": "https://github.com/techtribe-dev/nodejs-chat#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "socket.io": "^4.6.1"
+  }
+}
