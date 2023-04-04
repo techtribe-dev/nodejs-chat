@@ -14,6 +14,17 @@ app.use(express.json());
 app.use(cors());
 
 const generateID = () => Math.random().toString(36).substring(2, 10);
+
+const generateKey = (len) => {
+	var noForSettingAlphabet = 4129;//prime number
+	let key = "";
+	for(let i = 0; i < len; i++){
+		key += String.fromCharCode((Math.random() * 256) + noForSettingAlphabet);
+	}
+
+	return key;
+}
+
 let chatRooms = [];
 
 socketIO.on("connection", (socket) => {
@@ -21,8 +32,10 @@ socketIO.on("connection", (socket) => {
 
   socket.on("createRoom", (name) => {
     socket.join(name);
-    chatRooms.unshift({ id: generateID(), name, messages: [] });
+    const pubkey = generateKey(64);
+    chatRooms.unshift({ id: generateID(), name, messages: [], pubkey });
     socket.emit("roomsList", chatRooms);
+    socket.to(name).emit("publicKey", pubkey);
   });
 
   socket.on("findRoom", (id) => {
